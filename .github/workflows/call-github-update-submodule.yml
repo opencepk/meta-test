@@ -29,13 +29,13 @@ jobs:
 
       - name: Read patterns from file
         id: read_patterns
-        uses: your-username/read-and-stringify-json-action@v1
+        uses: opencepk/opencepk-module-ghactions-common/read-and-stringify-json-action@fix/update-gitmodules-action
         with:
           file: '.github/META-REPO-PATTERNS'
           file_type: 'file'
           separator: '\n'
           output_format: ','
-          
+
       - name: Log patterns
         run: |
           echo "Patterns: ${{ steps.read_patterns.outputs.properties }}"
