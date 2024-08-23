@@ -21,11 +21,24 @@ jobs:
           application_private_key: ${{ secrets.GH_APP_REPO_ACTION_RW_PRIVATE_KEY }}
           revoke_token: true
 
+      # - name: Read patterns from file
+      #   id: read_patterns
+      #   run: |
+      #     patterns=$(grep -v '^$' .github/META-REPO-PATTERNS | tr '\n' ',' | sed 's/,$//')
+      #     echo "patterns=$patterns" >> $GITHUB_ENV
+
       - name: Read patterns from file
         id: read_patterns
+        uses: your-username/read-and-stringify-json-action@v1
+        with:
+          file: '.github/META-REPO-PATTERNS'
+          file_type: 'file'
+          separator: '\n'
+          output_format: ','
+          
+      - name: Log patterns
         run: |
-          patterns=$(grep -v '^$' .github/META-REPO-PATTERNS | tr '\n' ',' | sed 's/,$//')
-          echo "patterns=$patterns" >> $GITHUB_ENV
+          echo "Patterns: ${{ steps.read_patterns.outputs.properties }}"
 
       - name: Trigger reusable workflow via API
         uses: opencepk/opencepk-module-ghactions-common/trigger-workflow-action@fix/update-gitmodules-action
@@ -34,7 +47,7 @@ jobs:
           repo: 'opencepk/opencepk-projects-hub'
           workflow_id: 'github-update-gitmodules.yml'
           ref: 'main'
-          inputs: '{"repo":"${{ github.repository }}", "patterns":"${{ env.patterns }}"}'
+          inputs: '{"repo":"${{ github.repository }}", "patterns":"${{ steps.read_patterns.outputs.properties }}"}'
 
       # - name: Trigger reusable workflow via API
       #   run: |
