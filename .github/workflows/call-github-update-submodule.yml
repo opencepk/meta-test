@@ -1,5 +1,5 @@
 # File: .github/workflows/call-set-topic.yml
-name: call-set-topic
+name: call-github-update-submodule
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  call-set-topic:
+  call-github-update-submodule:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
