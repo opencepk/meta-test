@@ -1,4 +1,4 @@
-# File: .github/workflows/call-set-topic.yml
+# File: .github/workflows/call-github-update-submodule.yml
 name: call-github-update-submodule
 
 on:
@@ -21,10 +21,16 @@ jobs:
           application_private_key: ${{ secrets.GH_APP_REPO_ACTION_RW_PRIVATE_KEY }}
           revoke_token: true
 
+      - name: Read patterns from file
+        id: read_patterns
+        run: |
+          patterns=$(grep -v '^$' .github/META-REPO-PATTERNS | tr '\n' ',' | sed 's/,$//')
+          echo "patterns=$patterns" >> $GITHUB_ENV
+
       - name: Trigger reusable workflow via API
         run: |
           curl -X POST \
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ steps.get_workflow_token.outputs.token }}" \
-            -d '{"ref":"main", "inputs":{"repo":"${{ github.repository }}"}}' \
+            -d '{"ref":"main", "inputs":{"repo":"${{ github.repository }}", "patterns":"${{ env.patterns }}"}}' \
             https://api.github.com/repos/opencepk/opencepk-projects-hub/actions/workflows/github-update-gitmodules.yml/dispatches
