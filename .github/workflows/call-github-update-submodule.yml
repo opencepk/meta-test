@@ -1,0 +1,30 @@
+# File: .github/workflows/call-set-topic.yml
+name: call-set-topic
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-set-topic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get Token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v3
+        with:
+          application_id: ${{ secrets.GH_APP_REPO_ACTION_RW_APPLICATION_ID }}
+          application_private_key: ${{ secrets.GH_APP_REPO_ACTION_RW_PRIVATE_KEY }}
+          revoke_token: true
+
+      - name: Trigger reusable workflow via API
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ steps.get_workflow_token.outputs.token }}" \
+            -d '{"ref":"main", "inputs":{"repo":"${{ github.repository }}", "github-token":"${{ steps.get_workflow_token.outputs.token }}"}}' \
+            https://api.github.com/repos/opencepk/opencepk-projects-hub/actions/workflows/github-update-gitmodules.yml/dispatches
