@@ -33,7 +33,7 @@ jobs:
         with:
           file: '.github/META-REPO-PATTERNS'
           file_type: 'file'
-          separator: '\n'
+          separator: '/\r?\n/'
           output_format: ','
 
           
