@@ -21,22 +21,15 @@ jobs:
           application_private_key: ${{ secrets.GH_APP_REPO_ACTION_RW_PRIVATE_KEY }}
           revoke_token: true
 
-      # - name: Read patterns from file
-      #   id: read_patterns
-      #   run: |
-      #     patterns=$(grep -v '^$' .github/META-REPO-PATTERNS | tr '\n' ',' | sed 's/,$//')
-      #     echo "patterns=$patterns" >> $GITHUB_ENV
-
       - name: Read patterns from file
         id: read_patterns
-        uses: opencepk/opencepk-module-ghactions-common/read-and-stringify-json-action@fix/update-gitmodules-action
+        uses: your-username/read-and-stringify-json-action@v1
         with:
           file: '.github/META-REPO-PATTERNS'
           file_type: 'file'
           separator: '\n'
           output_format: ','
 
-          
       - name: Log patterns
         run: |
           echo "Patterns: ${{ steps.read_patterns.outputs.properties }}"
