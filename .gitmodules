@@ -1,0 +1,33 @@
+[submodule "modules/opencepk-module-tf-github"]
+	path = modules/opencepk-module-tf-github
+	url = git@github.com:opencepk/opencepk-module-tf-github.git
+[submodule "modules/opencepk-copy"]
+	path = modules/opencepk-copy
+	url = git@github.com:opencepk/opencepk-copy.git
+[submodule "modules/opencepk-shell-utils"]
+	path = modules/opencepk-shell-utils
+	url = git@github.com:opencepk/opencepk-shell-utils.git
+[submodule "modules/opencepk-library-architecture-desgin"]
+	path = modules/opencepk-library-architecture-desgin
+	url = git@github.com:opencepk/opencepk-library-architecture-desgin.git
+[submodule "modules/opencepk-lib-python-common"]
+	path = modules/opencepk-lib-python-common
+	url = git@github.com:opencepk/opencepk-lib-python-common.git
+[submodule "modules/opencepk-custom-github-actions"]
+	path = modules/opencepk-custom-github-actions
+	url = git@github.com:opencepk/opencepk-custom-github-actions.git
+[submodule "modules/opencepk-lib-shell-common"]
+	path = modules/opencepk-lib-shell-common
+	url = git@github.com:opencepk/opencepk-lib-shell-common.git
+[submodule "modules/opencepk-module-ghactions-common"]
+	path = modules/opencepk-module-ghactions-common
+	url = git@github.com:opencepk/opencepk-module-ghactions-common.git
+[submodule "modules/opencepk-template-base"]
+	path = modules/opencepk-template-base
+	url = git@github.com:opencepk/opencepk-template-base.git
+[submodule "modules/opencepk-template-meta"]
+	path = modules/opencepk-template-meta
+	url = git@github.com:opencepk/opencepk-template-meta.git
+[submodule "modules/opencepk-projects-hub"]
+	path = modules/opencepk-projects-hub
+	url = git@github.com:opencepk/opencepk-projects-hub.git
