@@ -36,7 +36,7 @@ jobs:
           separator: '/\r?\n/'
           output_format: ','
 
-          
+
       - name: Log patterns
         run: |
           echo "Patterns: ${{ steps.read_patterns.outputs.properties }}"
